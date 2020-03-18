@@ -28,9 +28,47 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.red[300],
       ),
       body: Center(
-        child: Image(
-          image: AssetImage('assets/anzhuo.png'),)  //本地Image
-        // child: Image.network("https://www.baidu.com/img/bd_logo1.png") //网络图片
+        // child: IconButton(  
+        //   onPressed: (){
+        //     print('you clicked me');
+        //   },
+        //   icon: Icon(Icons.account_circle),
+        //   color: Colors.blue,
+        //   iconSize: 80.0, //图标按钮
+        // ),
+
+        // child: RaisedButton.icon(
+        //   onPressed: (){
+        //     print("you cliced raisedButton");          
+        // }, 
+        // icon:Icon(Icons.desktop_windows), 
+        // color: Colors.lightBlue, 
+        // label: Text("lala"),), //字加图标按钮，立体效果
+
+        // child: FlatButton(
+        //   child: Text("cliked flatButton"), 
+        //   onPressed: () {
+        //     print("you clicked flatButton");
+        //   },
+        //   color: Colors.lightBlue,
+        //   ), //字加按钮，没有立体效果
+
+        // child: RaisedButton(
+        //   onPressed: (){
+        //     print("clicked RaisedButton");
+        //   },
+        //   child: Text("click me"),
+        //   color: Colors.blue,
+        // ),// 字加按钮，立体效果
+        child: Icon(
+          Icons.airport_shuttle,
+          size:100,
+          color: Colors.blue
+        ),//普通icon
+
+
+
+
       ),
       floatingActionButton: FloatingActionButton(
         child: Text('Button'),
