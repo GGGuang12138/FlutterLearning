@@ -27,46 +27,15 @@ class Home extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.red[300],
       ),
-      body: Center(
-        // child: IconButton(  
-        //   onPressed: (){
-        //     print('you clicked me');
-        //   },
-        //   icon: Icon(Icons.account_circle),
-        //   color: Colors.blue,
-        //   iconSize: 80.0, //图标按钮
-        // ),
-
-        // child: RaisedButton.icon(
-        //   onPressed: (){
-        //     print("you cliced raisedButton");          
-        // }, 
-        // icon:Icon(Icons.desktop_windows), 
-        // color: Colors.lightBlue, 
-        // label: Text("lala"),), //字加图标按钮，立体效果
-
-        // child: FlatButton(
-        //   child: Text("cliked flatButton"), 
-        //   onPressed: () {
-        //     print("you clicked flatButton");
-        //   },
-        //   color: Colors.lightBlue,
-        //   ), //字加按钮，没有立体效果
-
-        // child: RaisedButton(
-        //   onPressed: (){
-        //     print("clicked RaisedButton");
-        //   },
-        //   child: Text("click me"),
-        //   color: Colors.blue,
-        // ),// 字加按钮，立体效果
-        child: Icon(
-          Icons.airport_shuttle,
-          size:100,
-          color: Colors.blue
-        ),//普通icon
-
-
+      body: Container(
+        color: Colors.grey[400],
+        child: Text('hello'),
+        //padding: EdgeInsets.all(20),
+        //padding: EdgeInsets.fromLTRB(10, 20, 30, 40),
+        padding: EdgeInsets.symmetric(horizontal:30, vertical:10)
+        //margin: EdgeInsets.all(20),     
+        //margin: EdgeInsets.fromLTRB(20, 10, 10, 10),
+        //margin: EdgeInsets.symmetric(horizontal:30, vertical:10)   
 
 
       ),
