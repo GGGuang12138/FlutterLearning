@@ -7,24 +7,44 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('My First Flutter App'),
-          centerTitle: true,
-        ),
-        body: Center(
-          child: Text('hello world'),
-        ),
-        floatingActionButton: FloatingActionButton(
-          child: Text('Button'),
-          onPressed: (){
-            print('test');
-          },
-        ),
-      ),
+      home: new Home(),
     );
 
 
   }
 }
+
+class Home extends StatelessWidget {
+  const Home({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('My First Flutter App'),
+        centerTitle: true,
+        backgroundColor: Colors.red[300],
+      ),
+      body: Center(
+        child: Text('hello world',
+          style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.w500,//字体粗细
+            letterSpacing: 3,
+          ),
+        ),
+        
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Text('Button'),
+        onPressed: (){
+          print('test');
+        },
+      ),
+    );
+  }
+}
+
 
