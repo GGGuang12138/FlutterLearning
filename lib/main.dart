@@ -28,14 +28,9 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.red[300],
       ),
       body: Center(
-        child: Text('hello world',
-          style: TextStyle(
-            fontSize: 20.0,
-            fontWeight: FontWeight.w500,//字体粗细
-            letterSpacing: 3,
-          ),
-        ),
-        
+        child: Image(
+          image: AssetImage('assets/anzhuo.png'),)  //本地Image
+        // child: Image.network("https://www.baidu.com/img/bd_logo1.png") //网络图片
       ),
       floatingActionButton: FloatingActionButton(
         child: Text('Button'),
