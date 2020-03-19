@@ -9,8 +9,6 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       home: new Home(),
     );
-
-
   }
 }
 
@@ -27,53 +25,34 @@ class Home extends StatelessWidget {
         centerTitle: true,
         backgroundColor: Colors.red[300],
       ),
-      // body: Row(
-      //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      //   crossAxisAlignment: CrossAxisAlignment.center,
-      //   children: <Widget>[
-      //     Text("hello world"),
-      //     FlatButton(
-      //       onPressed: (){},
-      //       color: Colors.amber,
-      //       child: Text("click me"),
-      //     ),
-      //     Container(
-      //       color: Colors.amber,
-      //       child: Text("box"),
-      //       padding: EdgeInsets.all(30),
-      //     )
-      //   ],
-      // ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              Text('hello')
-            ],
+      body: Row(children: <Widget>[
+        Expanded(
+          flex: 1,
+          child: Container(
+            child: Image.asset('assets/anzhuo.png'),
+            color: Colors.red[50],
           ),
-          Container(
-            color: Colors.amber,
-            padding: EdgeInsets.all(20),
+        ),
+        Expanded(
+          flex: 2,
+          child: Container(
             child: Text("one"),
-          ),
-          Container(
-            color: Colors.cyan,
             padding: EdgeInsets.all(30),
-            child: Text("two"),
-          )
-        ],
-      ),
+            color: Colors.red[100],
+          ),
+        ),
+        Container(
+          child: Text("two"),
+          padding: EdgeInsets.all(40),
+          color: Colors.red[200],
+        )
+      ]),
       floatingActionButton: FloatingActionButton(
         child: Text('Button'),
-        onPressed: (){
+        onPressed: () {
           print('test');
         },
       ),
     );
   }
 }
-
-
