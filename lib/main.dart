@@ -12,33 +12,41 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({
     Key key,
   }) : super(key: key);
 
   @override
+  _HomeState createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+
+  int level = 1;
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
-      // appBar: AppBar(
-      //   title: Text(
-      //     'My First Flutter App',
-      //     style: TextStyle(color: Colors.grey[900]),
-      //   ),
-      //   centerTitle: true,
-      //   backgroundColor: Colors.grey[200],
-      // ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {//刷新界面
+            level += 1;
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.grey[500],
+      ),
       body: Container(
-        padding: EdgeInsets.fromLTRB(30, 80, 30, 0),
+        padding: EdgeInsets.fromLTRB(40, 80, 40, 0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             Center(
               child: CircleAvatar(
                 backgroundImage: AssetImage('assets/anzhuo.png'),
-                radius: 70,
-                backgroundColor: Colors.grey[300],
+                radius: 40,
+                backgroundColor: Colors.grey[200],
               ),
             ),
             Divider(
@@ -62,22 +70,22 @@ class Home extends StatelessWidget {
               ),
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Text(
-              'favorite',
+              'level',
               style: TextStyle(color: Colors.grey, letterSpacing: 2),
             ),
             SizedBox(
               height: 10,
             ),
             Text(
-              'Coding',
+              '$level',
               style: TextStyle(
                   color: Colors.black, letterSpacing: 2, fontSize: 28),
             ),
             SizedBox(
-              height: 10,
+              height: 20,
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,7 +95,9 @@ class Home extends StatelessWidget {
                 Text(
                   'ggguang12138@icloud.com',
                   style: TextStyle(
-                      color: Colors.grey[700], fontSize: 18, letterSpacing: 0.5),
+                      color: Colors.grey[700],
+                      fontSize: 18,
+                      letterSpacing: 0.5),
                 )
               ],
             ),
