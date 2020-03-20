@@ -34,23 +34,17 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[200],
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          setState(() {
-            //刷新界面
-          });
-        },
-        child: Icon(Icons.add),
-        backgroundColor: Colors.grey[500],
-      ),
       appBar: AppBar(
         title: Text("app"),
       ),
       body: Container(
         child: Column(
         children: quotes.map((quote){
-          return QuoteCard(quot: quote);
+          return QuoteCard(quot: quote,delete: (){
+            setState(() {
+              quotes.remove(quote);
+            });
+          },);
         }).toList(),
     ),
       ),
