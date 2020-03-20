@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world2/model/Quote.dart';
+import 'package:hello_world2/widget/QuoteCard.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,88 +24,37 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-
-  int level = 1;
+  List<Quote> quotes = [
+    Quote(text: 'quote1', author: 'author1'),
+    Quote(text: 'quote2', author: 'author2'),
+    Quote(text: 'quote3', author: 'author3'),
+    Quote(text: 'quote4', author: 'author4'),
+    Quote(text: 'quote5', author: 'author5'),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey[200],
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          setState(() {//刷新界面
-            level += 1;
+          setState(() {
+            //刷新界面
           });
         },
         child: Icon(Icons.add),
         backgroundColor: Colors.grey[500],
       ),
+      appBar: AppBar(
+        title: Text("app"),
+      ),
       body: Container(
-        padding: EdgeInsets.fromLTRB(40, 80, 40, 0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Center(
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/anzhuo.png'),
-                radius: 40,
-                backgroundColor: Colors.grey[200],
-              ),
-            ),
-            Divider(
-              height: 60,
-              color: Colors.grey[600],
-              thickness: 2,
-            ),
-            Text(
-              'NAME',
-              style: TextStyle(color: Colors.grey, letterSpacing: 2),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              'GG Chen',
-              style: TextStyle(
-                color: Colors.black,
-                letterSpacing: 2,
-                fontSize: 28,
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Text(
-              'level',
-              style: TextStyle(color: Colors.grey, letterSpacing: 2),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Text(
-              '$level',
-              style: TextStyle(
-                  color: Colors.black, letterSpacing: 2, fontSize: 28),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Icon(Icons.email, color: Colors.green[600]),
-                SizedBox(width: 5),
-                Text(
-                  'ggguang12138@icloud.com',
-                  style: TextStyle(
-                      color: Colors.grey[700],
-                      fontSize: 18,
-                      letterSpacing: 0.5),
-                )
-              ],
-            ),
-          ],
-        ),
+        children: quotes.map((quote){
+          return QuoteCard(quot: quote);
+        }).toList(),
+    ),
       ),
     );
   }
 }
+
