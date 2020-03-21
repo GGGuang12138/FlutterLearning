@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:hello_world2/service/time.dart';
 
 class Change extends StatefulWidget {
   const Change({
@@ -12,32 +10,81 @@ class Change extends StatefulWidget {
 }
 
 class _ChangeState extends State<Change> {
-  String timeString = 'Loading...';
-  void getData() async {
-    Time time = Time(location:"Shanghai",url:'Asia/Shanghai',flag:'');
-    await time.getData();
-    setState(() {
-      timeString = time.time;
-    });
-  }
-
+  Map data = {};
   @override
   Widget build(BuildContext context) {
+    data = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      backgroundColor: Colors.grey[300],
-      appBar: AppBar(
-        backgroundColor: Colors.blue,
-        centerTitle: true,
-        title: Text("我是页面"),
-      ),
       body: Container(
-        margin: EdgeInsets.fromLTRB(5, 5, 0, 0),
-        child: RaisedButton(
-          color: Colors.grey[50],
-          onPressed: () {
-            getData();
-          },
-          child: Text('$timeString'),
+        child: Container(
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('assets/me.jpeg'), fit: BoxFit.cover)),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(0, 120, 0, 0),
+            child: Column(
+              children: <Widget>[
+                FlatButton.icon(
+                    onPressed: () {},
+                    icon: Stack(
+                      children: <Widget>[
+                        Positioned(
+                          //增加阴影
+                          left: 1.0,
+                          top: 2.0,
+                          child: Icon(
+                            Icons.edit_location,
+                            color: Colors.white,
+                          ),
+                        ),
+                        Icon(
+                          Icons.edit_location,
+                          color: Colors.black,
+                        )
+                      ],
+                    ),
+                    label: Text(
+                      'Edit Location',
+                      style: TextStyle(shadows: [
+                        Shadow(
+                            offset: Offset(2.0, 2.0),
+                            blurRadius: 3.0,
+                            color: Colors.white)
+                      ]),
+                    )),
+                SizedBox(
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      data['location'],
+                      style: TextStyle(
+                          fontSize: 28,
+                          letterSpacing: 2,
+                          shadows: [
+                            Shadow(
+                                offset: Offset(2.0, 2.0),
+                                blurRadius: 3.0,
+                                color: Colors.white)
+                          ]),
+                    )
+                  ],
+                ),
+                SizedBox(height: 20),
+                Text(
+                  data['time'],
+                  style: TextStyle(fontSize: 66, letterSpacing: 2, shadows: [
+                    Shadow(
+                        offset: Offset(2.0, 2.0),
+                        blurRadius: 3.0,
+                        color: Colors.white)
+                  ]),
+                ),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -45,15 +92,11 @@ class _ChangeState extends State<Change> {
 
   @override
   void dispose() {
-    print("dispose is called");
     super.dispose();
   }
 
   @override
   void initState() {
     super.initState();
-    print("inintState is called");
-    getData();
-    
   }
 }

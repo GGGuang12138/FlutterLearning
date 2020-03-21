@@ -18,7 +18,7 @@ class _HomeState extends State<Home> {
           children: <Widget>[
             FlatButton.icon(
                 onPressed: (() {
-                  Navigator.pushNamed(context, '/Change');
+                  Navigator.pushNamed(context, '/Loading');
                 }),
                 icon: Icon(Icons.edit_location),
                 label: Text('冲'))
