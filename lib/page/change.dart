@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:hello_world2/service/time.dart';
 
 class Change extends StatefulWidget {
   const Change({
@@ -10,13 +12,13 @@ class Change extends StatefulWidget {
 }
 
 class _ChangeState extends State<Change> {
-  int counter = 0;
+  String timeString = 'Loading...';
   void getData() async {
-    String username = await Future.delayed(Duration(seconds:10),(){
-      return  'gg';
+    Time time = Time(location:"Shanghai",url:'Asia/Shanghai',flag:'');
+    await time.getData();
+    setState(() {
+      timeString = time.time;
     });
-    print('username = $username');
-
   }
 
   @override
@@ -33,9 +35,9 @@ class _ChangeState extends State<Change> {
         child: RaisedButton(
           color: Colors.grey[50],
           onPressed: () {
-            counter++;
+            getData();
           },
-          child: Text('$counter'),
+          child: Text('$timeString'),
         ),
       ),
     );
@@ -52,6 +54,6 @@ class _ChangeState extends State<Change> {
     super.initState();
     print("inintState is called");
     getData();
-    print("叫人去拿名字了");
+    
   }
 }
