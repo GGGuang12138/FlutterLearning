@@ -21,7 +21,7 @@ class _ChangeState extends State<Change> {
               image: DecorationImage(
                   image: AssetImage('assets/me.jpeg'), fit: BoxFit.cover)),
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(0, 120, 0, 0),
+            padding: EdgeInsets.fromLTRB(0, 120, 0, 0),
             child: Column(
               children: <Widget>[
                 FlatButton.icon(
