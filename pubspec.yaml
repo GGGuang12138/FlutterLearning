@@ -17,8 +17,23 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  # 高级http
+  dio: ^3.0.9
+      # 维持 cookie
+  cookie_jar: ^1.0.0
+  dio_cookie_manager: ^1.0.0
+
+  # 本地存储
+  localstorage: ^3.0.1+4
+
+  # 加密
+  crypto: ^2.1.4
+
+  # 缓存图标
   flutter_spinkit: "^4.1.2"
+  # 普通http
   http: ^0.12.0+4
+  # 时间转换
   date_format: ^1.0.8
   flutter:
     sdk: flutter

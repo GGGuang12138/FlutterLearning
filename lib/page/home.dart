@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:hello_world2/entity/user.dart';
+import 'package:hello_world2/service/user.dart';
+import 'package:hello_world2/utils/security.dart';
 
 class Home extends StatefulWidget {
   const Home({
@@ -14,6 +17,40 @@ class _HomeState extends State<Home> {
   TextEditingController passwordController = TextEditingController();
   bool invalidName = false;
   bool invalidPassword = false;
+  //执行登陆操作
+  _handleSignIn() async {
+    /// 判空
+    if (nameController.text == null || nameController.text.isEmpty) {
+      setState(() {
+        invalidName = true;
+      });
+    } else {
+      setState(() {
+        invalidName = false;
+      });
+    }
+    if (passwordController.text == null || passwordController.text.isEmpty) {
+      setState(() {
+        invalidPassword = true;
+      });
+    } else {
+      setState(() {
+        invalidPassword = false;
+      });
+    }
+    /// 调用API、登陆跳转
+    if (!invalidPassword && !invalidName) {
+      UserLoginRequestEntity params = UserLoginRequestEntity(
+        username: nameController.text,
+        password: encrypt(passwordController.text)
+      );
+      UserLoginResponseEntity res = await User.login(params:params);
+      if(res.accessToken!=null){
+        Navigator.pushNamed(context, '/Loading');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,31 +95,7 @@ class _HomeState extends State<Home> {
             padding: EdgeInsets.fromLTRB(15, 0, 15, 0),
             child: RaisedButton(
               onPressed: () {
-                if (nameController.text == null ||
-                    nameController.text.isEmpty) {
-                  setState(() {
-                    invalidName = true;
-                  });
-                } else {
-                  setState(() {
-                    invalidName = false;
-                  });
-                }
-                if (passwordController.text == null ||
-                    passwordController.text.isEmpty) {
-                  setState(() {
-                    invalidPassword = true;
-                  });
-                } else {
-                  setState(() {
-                    invalidPassword = false;
-                  });
-                }
-                print(invalidName);
-                print(invalidPassword);
-                if (!invalidPassword && !invalidName) {
-                  Navigator.pushNamed(context, '/Loading');
-                }
+                _handleSignIn();
               },
               textColor: Colors.white,
               color: Colors.blue,
