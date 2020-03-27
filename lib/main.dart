@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world2/page/change.dart';
+import 'package:hello_world2/page/BottomNavigation.dart';
 import 'package:hello_world2/page/home.dart';
 import 'package:hello_world2/page/loading.dart';
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/':(context) => new Home(),
-        '/Change':(context) => new Change(),
+        '/Change':(context) => new BottomNavigation(),
         '/Loading':(context) => new Loading(),
       },
     );

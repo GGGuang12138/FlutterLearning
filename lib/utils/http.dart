@@ -42,6 +42,7 @@ class HttpUtil {
         return e; 
       }));
   }
+  //取消token
   void cancelRequests(CancelToken token){
     token.cancel("cancelled");
   }
