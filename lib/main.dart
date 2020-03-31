@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world2/page/BottomNavigation.dart';
+import 'package:hello_world2/page/global.dart';
 import 'package:hello_world2/page/home.dart';
 import 'package:hello_world2/page/loading.dart';
-
-void main() => runApp(MyApp());
+//先初始化全局配置
+void main() => Global.init().then((e)=> runApp(MyApp()));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

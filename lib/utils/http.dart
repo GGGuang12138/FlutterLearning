@@ -1,9 +1,9 @@
 import 'package:cookie_jar/cookie_jar.dart';
 import 'package:dio/dio.dart';
 import 'package:dio_cookie_manager/dio_cookie_manager.dart';
+import 'package:hello_world2/page/global.dart';
 import 'package:hello_world2/values/values.dart';
 
-import 'storage.dart';
 
 class HttpUtil {
   //网络单例
@@ -49,7 +49,7 @@ class HttpUtil {
   // 读取本地配置
   Options getLocalOptions(){
     Options options;
-    String token = StorageUtil().getItem(STORAGE_USER_TOKEN_KEY);
+    String token = Global.profile.accessToken;
     if (token != null) {
       options = Options(headers: {
         'Authorization': 'Bearer $token',

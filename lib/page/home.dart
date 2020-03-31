@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hello_world2/entity/user.dart';
+import 'package:hello_world2/page/global.dart';
 import 'package:hello_world2/service/user.dart';
 import 'package:hello_world2/utils/security.dart';
 
@@ -45,12 +46,14 @@ class _HomeState extends State<Home> {
         password: encrypt(passwordController.text)
       );
       UserLoginResponseEntity res = await User.login(params:params);
+      Global.saveProfile(res);
       if(res.accessToken!=null){
         Navigator.pushNamed(context, '/Loading');
       }
     }
   }
 
+  // 界面代码
   @override
   Widget build(BuildContext context) {
     return Scaffold(
