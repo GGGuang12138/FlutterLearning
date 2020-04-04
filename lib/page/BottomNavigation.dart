@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world2/page/doctor.dart';
-import 'package:hello_world2/page/patient.dart';
-import 'package:hello_world2/page/person.dart';
+import 'package:hello_world2/page/doctor/doctor.dart';
+import 'package:hello_world2/page/patient/patient.dart';
+import 'package:hello_world2/page/person/person.dart';
 
 class BottomNavigation extends StatefulWidget {
   BottomNavigation({Key key}) : super(key: key);
