@@ -4,7 +4,7 @@ import 'package:hello_world2/entity/patient.dart';
 
 Widget patientItem(PatientPagesListResponseEntity item) {
   return Container(
-    padding: EdgeInsets.fromLTRB(0, 0, 0, 10),
+    padding: EdgeInsets.fromLTRB(8, 0, 8, 5),
     child: Column(
       children: <Widget>[
         Container(),
@@ -38,7 +38,7 @@ Widget patientItem(PatientPagesListResponseEntity item) {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 28, 10),
+                padding: const EdgeInsets.fromLTRB(0, 0, 28, 5),
                 child: IconButton(
                   onPressed: () {},
                   icon: Icon(
@@ -49,7 +49,7 @@ Widget patientItem(PatientPagesListResponseEntity item) {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 28, 10),
+                padding: const EdgeInsets.fromLTRB(0, 0, 28, 5),
                 child: IconButton(
                   onPressed: () {},
                   icon: Icon(
@@ -60,7 +60,7 @@ Widget patientItem(PatientPagesListResponseEntity item) {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 28, 10),
+                padding: const EdgeInsets.fromLTRB(0, 0, 28, 5),
                 child: IconButton(
                   onPressed: () {},
                   icon: Icon(
@@ -71,7 +71,7 @@ Widget patientItem(PatientPagesListResponseEntity item) {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 0, 28, 10),
+                padding: const EdgeInsets.fromLTRB(0, 0, 28, 5),
                 child: IconButton(
                   onPressed: () {},
                   icon: Icon(
