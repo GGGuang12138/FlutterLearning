@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hello_world2/page/BottomNavigation.dart';
+//import 'package:hello_world2/page/BottomNavigation.dart';
 import 'package:hello_world2/page/global.dart';
-import 'package:hello_world2/page/home.dart';
-import 'package:hello_world2/page/loading.dart';
+//import 'package:hello_world2/page/home.dart';
+//import 'package:hello_world2/page/loading.dart';
 import 'package:hello_world2/page/patient/monitor.dart';
 import 'package:jpush_flutter/jpush_flutter.dart';
 //先初始化全局配置
@@ -28,9 +28,9 @@ class MyApp extends StatelessWidget {
     return new MaterialApp(
       initialRoute: '/Monitor',
       routes: {
-        '/':(context) => new Home(),
-        '/Change':(context) => new BottomNavigation(),
-        '/Loading':(context) => new Loading(),
+        //'/':(context) => new Home(),
+        //'/Change':(context) => new BottomNavigation(),
+        //'/Loading':(context) => new Loading(),
         '/Monitor':(context) => new Monitor(),
       },
     );
