@@ -20,32 +20,32 @@ class DemoPainter extends CustomPainter {
   List<Offset> points = List();
 
   double startX, endX, startY, endY; //定义绘制区域的边界
-  static const double basePadding = 16; //默认的边距
+  static const double basePadding = 8; //默认的边距
   double fixedHeight, fixedWidth; //去除padding后曲线的真实宽高
   bool isShowXyRuler; //是否显示xy刻度
   List<Point> chatBeans = []; //数据源
 
   Size size;
-  int yNum, length;
-  List<double> maxMin;
-  Path path;
-  double value;
+  int yNum, length; //数据个数
+  List<double> maxMin; // [max, min]
+  Path path;//路径
+  double value;//动画数值
 
   DemoPainter({@required this.chatBeans,@required this.value});
 
   void initBorder(Size size) {
     print('size - - > $size');
-    yNum = chatBeans.length;
-    startX = yNum > 0 ? basePadding * 2.5 : basePadding * 2; //预留出y轴刻度值所占的空间
+    yNum = chatBeans.length;//获取点的个数
+    startX = yNum > 0 ? basePadding * 2.5 : basePadding * 2; // 预留出y轴刻度值所占的空间
     endX = size.width - basePadding * 2;
-    startY = size.height - (basePadding);
-    endY = basePadding * 2;
-    fixedHeight = startY - endY;
-    fixedWidth = endX - startX;
-    maxMin = calculateMaxMin(chatBeans);
+    startY = size.height - (basePadding);//y轴下
+    endY = basePadding; //y轴上
+    fixedHeight = startY - endY; //高度
+    fixedWidth = endX - startX; //宽度
+    maxMin = calculateMaxMin(chatBeans);// [max, min]
   }
 
-  //  求极值
+  //  [max, min]
   List<double> calculateMaxMin(List<Point> chatBeans) {
     if (chatBeans == null || chatBeans.length == 0) return [0, 0];
     double max = 0.0, min = 0.0;
@@ -60,6 +60,7 @@ class DemoPainter extends CustomPainter {
     return [max, min];
   }
 
+  //画笔
   @override
   void paint(Canvas canvas, Size size) {
     var paint = Paint()
@@ -69,11 +70,11 @@ class DemoPainter extends CustomPainter {
       ..strokeWidth = (1.0)
       ..isAntiAlias = true;
 
-    //画坐标
+    //计算坐标
     initBorder(size);
 
-    //画x轴
-    length = chatBeans.length; //最多绘制7个
+    //画x轴  重构！
+    length = chatBeans.length; //长度 可以改成yNum
     print(length.toString());
     double DW = fixedWidth / (length - 1); //两个点之间的x方向距离
     double DH = fixedHeight / (length - 1); //两个点之间的y方向距离
@@ -118,13 +119,15 @@ class DemoPainter extends CustomPainter {
     //遍历数组，讲数据填入path
     path = Path();
     double preX, preY, currentX, currentY;
-    double W = fixedWidth / (length - 1);
+    double DX = 60; //x轴坐标间隔   ！
+    double xoffset = value*100;
+    print(value);
     for (int i = 0; i < chatBeans.length; i++) {
       if (i == 0) {
         path.moveTo(
-            startX, (startY - chatBeans[i].y / maxMin[0] * fixedHeight));
+            startX-xoffset, (startY - chatBeans[i].y / maxMin[0] * fixedHeight)); //总高度减去 数据在图中对应的长度
       } else {
-        currentX = startX + W * i;
+        currentX = startX + DX * i -xoffset;
         currentY = (startY - chatBeans[i].y / maxMin[0] * fixedHeight);
         path.lineTo(currentX, currentY);
       }
@@ -175,6 +178,22 @@ class DemoPainter extends CustomPainter {
     // path.lineTo(200, 250);
     // canvas.drawPath(path, paint);
 
+    // 视图，（线在图的范围内才可见）
+    //canvas.save();
+    canvas.clipRect(
+      Rect.fromLTWH(
+        startX.toDouble(),
+        endY.toDouble(),
+        fixedWidth,
+        fixedHeight,
+      ),
+    );
+    print(startX.toString());
+    print(endY.toString());
+    print(fixedWidth.toString());
+    print(fixedHeight.toString());
+
+    // 将path根据动画进行分段
     var pathMetrics = path.computeMetrics(forceClosed: false);
     var list = pathMetrics.toList();
     var dlength = value * list.length.toInt();
@@ -183,8 +202,19 @@ class DemoPainter extends CustomPainter {
       var extractPath =
           list[i].extractPath(0, list[i].length * value, startWithMoveTo: true);
       newPath.addPath(extractPath, Offset(0, 0));
+      
     }
+    //canvas.save();
     canvas.drawPath(newPath, paint);
+    // canvas.clipRect(
+    //   Rect.fromLTWH(
+    //     startX.toDouble(),
+    //     endY.toDouble(),
+    //     fixedWidth,
+    //     fixedHeight,
+    //   ),
+    // );
+    // canvas.restore();
   }
 
   @override
@@ -209,9 +239,9 @@ class _DemoWidgetState extends State<DemoWidget>
     //绘制Wight
 
     return CustomPaint(
-      size: Size(100, 200),
+      size: Size(100, 300),
       painter: DemoPainter(
-          chatBeans: [Point(y: 50.0), Point(y: 70.0), Point(y: 80.0)], value: _controller.value),
+          chatBeans: [Point(y: 50.0), Point(y: 70.0), Point(y: 80.0),Point(y: 40.0),Point(y: 30.0),Point(y: 80.0),Point(y: 20.0),Point(y: 10.0),Point(y: 80.0),Point(y: 40.0),Point(y: 30.0),Point(y: 80.0),Point(y: 20.0),], value: _controller.value),
     );
   }
 
@@ -226,7 +256,7 @@ class _DemoWidgetState extends State<DemoWidget>
   void initState() {
     //动画启动
     _controller =
-        AnimationController(vsync: this, duration: Duration(milliseconds: 2000))
+        AnimationController(vsync: this, duration: Duration(milliseconds: 4000))
           ..repeat()
           ..addListener(() {
             setState(() {});

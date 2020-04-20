@@ -18,7 +18,7 @@ class _MonitorState extends State<Monitor> {
         body: Center(
             child: Container(
               height: 150,
-              width: 300,
+              width: 350,
               child: Card(
                   shape: RoundedRectangleBorder(
                     //形状
